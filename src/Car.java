@@ -19,5 +19,6 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", isRented=" + isRented +
                 '}';
+
     }
 }
