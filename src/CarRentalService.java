@@ -49,7 +49,6 @@ public class CarRentalService {
                 System.out.println(i + 1 + ")" + rentedCars.get(i));
             }
 
-
         }
         System.out.println("Sorry all cars have been rented");
     }
