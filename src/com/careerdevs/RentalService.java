@@ -38,19 +38,23 @@ public class RentalService {
             int userSelection = UserInput.ReadInt("Enter a number to select the car you'd like to rent \nSelection: ", 1, availableCarNum);
             carStorage[userSelection - 1].setRented(true); //BUG (IF USER SELECTS 1 TWICE IT WILL SET INDEX 0 TO TRUE TWICE.
             carAvailable--;
-        }
-        System.out.println("Sorry all cars have been rented");
-        int userInputEndProgram = UserInput.ReadInt("would you like to end this program or reset car data? (press 1 to end program or press 2 to reset data):",1,2);
-        if(userInputEndProgram ==2){
-            for(int i = 0; i < carStorage.length; i++){
-                carStorage[i].setRented(false);
-                carAvailable ++;
+
+
+            if (carAvailable == 0) {
+                System.out.println("Sorry all cars have been rented");
+                int userInputEndProgram = UserInput.ReadInt("would you like to end this program or reset car data? (press 1 to end program or press 2 to reset data):", 1, 2);
+                if (userInputEndProgram == 2) {
+                    for (int i = 0; i < carStorage.length; i++) {
+                        carStorage[i].setRented(false);
+                        carAvailable++;
+
+                    }
+                } else {
+                    System.out.println("Have a nice day");
+                }
 
             }
-        }else{
-            System.out.println("Have a nice day");
         }
-
 
     }
 
