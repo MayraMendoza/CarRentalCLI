@@ -27,7 +27,6 @@ public class UserInput {
             } catch (InputMismatchException e) {
                 scanner.nextLine();
                 System.out.println("you must enter an integer, please try again");
-                System.out.println(question);
 
             }
 
