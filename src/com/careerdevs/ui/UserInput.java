@@ -14,7 +14,7 @@ public class UserInput {
 
     public static int ReadInt(String question, int Min, int Max) {
         while (true) {
-            System.out.println(question);
+            System.out.print(question);
             try {
                 int answer = scanner.nextInt();
                 while(answer> Max || answer<Min){

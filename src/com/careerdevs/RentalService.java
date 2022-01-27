@@ -21,35 +21,28 @@ public class RentalService {
         carStorage[1] = car2;
         carStorage[2] = car3;
 
-//        System.out.println(availableCars[0].getMake());
-//
-////        availableCars[1].setRented(true);
 //        int carAvailable = 3;
         while(carAvailable> 0) {
 
             int availableCarNum = 0;
-            int carOrder;
             System.out.println("Available Cars: ");
             for (int i = 0; i < carStorage.length; i++) {
 
                 if (carStorage[i].isRented() == false) {
                     availableCarNum++;
-                    System.out.println("(" + i + ") " + carStorage[i].getMake() + carStorage[i].getModel());
-                    ;
+                    System.out.println("(" + (i+1) + ") " + carStorage[i].getMake() +" "+ carStorage[i].getModel());
                 }
-
             }
-            int userSelection = UserInput.ReadInt("Enter a number to select the car you'd like to rent \nSelection: ", 1, availableCarNum);
+            int userSelection = UserInput.ReadInt("Enter a number to select the car you'd like to rent \nSelection: ", 1, 3);//fix
 
             carStorage[userSelection - 1].setRented(true); //BUG (IF USER SELECTS 1 TWICE IT WILL SET INDEX 0 TO TRUE TWICE.
-            System.out.println("Thank you! You are now renting the"  );// FIX
+            System.out.println("\nThank you! You are now renting the " +carStorage[userSelection - 1].getMake() + " " + carStorage[userSelection - 1].getModel() + "\n");// FIX
             carAvailable--;
 
             if (carAvailable == 0) {
                 endProgramOptions();
             }
         }
-
     }
 
     // this method will give the user an option of ending the program or staring all over (reset all cars to available)
@@ -64,7 +57,7 @@ public class RentalService {
         } else {
             System.out.println("Have a nice day!");
         }
-        return "Have a nice day";
+        return "Have a nice day"; //fix
     }
 
 }
