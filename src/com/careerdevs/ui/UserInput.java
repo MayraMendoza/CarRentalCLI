@@ -12,12 +12,13 @@ public class UserInput {
         return scanner.nextLine();
     }
 
-    public static int ReadInt(String question, int Min, int Max) {
+    public static int ReadInt(String question, int min, int max) {
         while (true) {
-            System.out.print(question);
+            System.out.print(question + "\nNumber (" + min + " - " + max +"):");
+
             try {
                 int answer = scanner.nextInt();
-                while(answer> Max || answer<Min){
+                while(answer> max || answer<min){
                     System.out.println("you must enter a valid number, please try again");
                     System.out.println(question);
                     answer=scanner.nextInt();

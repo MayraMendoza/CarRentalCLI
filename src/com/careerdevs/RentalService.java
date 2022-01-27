@@ -3,15 +3,17 @@ package com.careerdevs;
 import com.careerdevs.ui.UserInput;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class RentalService {
-    static int carAvailable = 3;
-    static Car[] carStorage = new Car[3];
+    private static int carAvailable ;
+    private static Car[] carStorage ;
 
     public static void main(String[] args) {
 
-//        Car[] carStorage = new Car[3];
+        carStorage = new Car[3];
+
         System.out.println("Welcome to the car Rental CLI");
         Car car1 = new Car("Honda", "Accord");
         Car car2 = new Car("Chevy", "Cruze");
@@ -21,55 +23,50 @@ public class RentalService {
         carStorage[1] = car2;
         carStorage[2] = car3;
 
-//        int carAvailable = 3;
-        while(carAvailable> 0) {
+        Car[] availableCars = getAvailableCars();
 
-            int availableCarNum = 0;
+
+        while(availableCars.length> 0) {
+
             System.out.println("Available Cars: ");
-            for (int i = 0; i < carStorage.length; i++) {
+            for (int i = 0; i < availableCars.length; i++) { //try.filter method
 
-                if (carStorage[i].isRented() == false) {
-                    availableCarNum++;
-                    System.out.println("(" + (i+1) + ") " + carStorage[i].getMake() +" "+ carStorage[i].getModel());
-                }
+                    System.out.println("(" + (i+1) + ") " + availableCars[i].getMake() +" "+ availableCars[i].getModel());
             }
-            int userSelection = UserInput.ReadInt("Enter a number to select the car you'd like to rent \nSelection: ", 1, 3);//fix
+            int userSelection = UserInput.ReadInt("Enter a number to select the car you'd like to rent ", 1, availableCars.length);//fix
 
-            carStorage[userSelection - 1].setRented(true); //BUG (IF USER SELECTS 1 TWICE IT WILL SET INDEX 0 TO TRUE TWICE.
-            System.out.println("\nThank you! You are now renting the " +carStorage[userSelection - 1].getMake() + " " + carStorage[userSelection - 1].getModel() + "\n");// FIX
-            carAvailable--;
+            availableCars[userSelection - 1].setRented(true); //BUG (IF USER SELECTS 1 TWICE IT WILL SET INDEX 0 TO TRUE TWICE.
+            System.out.println("\nThank you! You are now renting the " +availableCars[userSelection - 1].getMake() + " " + availableCars[userSelection - 1].getModel() + "\n");// FIX
 
-            if (carAvailable == 0) {
+            availableCars = getAvailableCars();
+
+
+            // if car equals 0 end programOptions will ask user if they want to reset program or end program
+            // if user resets program cars available will change to original available cars.
+            if (availableCars.length == 0) {
                 endProgramOptions();
+                availableCars = getAvailableCars();
+
             }
         }
+
+    }
+    private static Car[] getAvailableCars(){
+        return Arrays.stream(carStorage).filter(car -> !car.isRented()).toArray(Car[]::new);
     }
 
     // this method will give the user an option of ending the program or staring all over (reset all cars to available)
-    public static String endProgramOptions(){
+    private static void endProgramOptions(){
         System.out.println("Sorry all cars have been rented");
         int userInputEndProgram = UserInput.ReadInt("would you like to end this program or reset car data? (press 1 to end program or press 2 to reset data):", 1, 2);
-        if (userInputEndProgram == 2) {
-            for (int i = 0; i <carStorage.length; i++) {
-                carStorage[i].setRented(false);
-                carAvailable++;
-            }
-        } else {
+        if (userInputEndProgram == 1) {
             System.out.println("Have a nice day!");
+            return;
         }
-        return "Have a nice day"; //fix
+        for (int i = 0; i <carStorage.length; i++) {
+            carStorage[i].setRented(false);
+        }
     }
 
 }
 
-//                System.out.println("Sorry all cars have been rented");
-//                int userInputEndProgram = UserInput.ReadInt("would you like to end this program or reset car data? (press 1 to end program or press 2 to reset data):", 1, 2);
-//                if (userInputEndProgram == 2) {
-//                    for (int i = 0; i < carStorage.length; i++) {
-//                        carStorage[i].setRented(false);
-//                        carAvailable++;
-//
-//                    }
-//                } else {
-//                    System.out.println("Have a nice day");
-//                }
