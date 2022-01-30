@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class RentalService {
     private static int carAvailable ;
     private static Car[] carStorage ;
+    private static int userMenuOption;
 
     public static void main(String[] args) {
 
@@ -24,6 +25,14 @@ public class RentalService {
         carStorage[2] = car3;
 
         Car[] availableCars = getAvailableCars();
+        // rented cards
+        Car[] rentedCars = getRentedCars();
+
+
+        // mainMenu(); method will ask user if they want to rent a car, return a car or exit the program.
+        mainMenu();
+
+        if(userMenuOption == 1){
 
 
         while(availableCars.length> 0) {
@@ -44,15 +53,30 @@ public class RentalService {
             // if car equals 0 end programOptions will ask user if they want to reset program or end program
             // if user resets program cars available will change to original available cars.
             if (availableCars.length == 0) {
+                // this will show rented cars
+                rentedCars = getRentedCars();
+                System.out.println("rented cars" + rentedCars);
+
                 endProgramOptions();
                 availableCars = getAvailableCars();
 
             }
         }
+        }
 
     }
+    private static int mainMenu(){
+        System.out.println("Rental Menu \n1)Rent a car \n2)Return a car \n3)Exit program");
+        userMenuOption=UserInput.ReadInt("Please enter option", 1, 3);
+        System.out.println(userMenuOption);
+        return userMenuOption;
+    }
+
     private static Car[] getAvailableCars(){
         return Arrays.stream(carStorage).filter(car -> !car.isRented()).toArray(Car[]::new);
+    }
+    private static Car[] getRentedCars(){
+        return Arrays.stream(carStorage).filter(car -> car.isRented()).toArray(Car[]::new);
     }
 
     // this method will give the user an option of ending the program or staring all over (reset all cars to available)
