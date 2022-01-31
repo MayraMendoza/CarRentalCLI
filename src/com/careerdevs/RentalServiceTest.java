@@ -13,6 +13,8 @@ public class RentalServiceTest {
 
     public static void main(String[] args) {
 
+        // upcoming program - 5 cars ... keep in mind this program should
+        // work with as many cars (objects)
         carStorage = new Car[3];
 
         System.out.println("Welcome to the car Rental CLI");
