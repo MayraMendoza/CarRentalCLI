@@ -6,10 +6,20 @@ public class Car {
     private String model;
     private boolean rented ;
     private boolean available;
+    private String customerName;
 
-    public Car (String make, String model){
+    public Car (String make, String model, String customerName){
         this.make = make;
         this.model = model;
+        this.customerName = customerName;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getMake() {

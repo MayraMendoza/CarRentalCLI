@@ -16,9 +16,9 @@ public class RentalService {
         carStorage = new Car[3];
 
         System.out.println("Welcome to the car Rental CLI");
-        Car car1 = new Car("Honda", "Accord");
-        Car car2 = new Car("Chevy", "Cruze");
-        Car car3 = new Car("Toyota", "Corolla");
+        Car car1 = new Car("Honda", "Accord",null);
+        Car car2 = new Car("Chevy", "Cruze", null);
+        Car car3 = new Car("Toyota", "Corolla", null);
 
         carStorage[0] = car1;
         carStorage[1] = car2;

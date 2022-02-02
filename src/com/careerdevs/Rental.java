@@ -10,29 +10,67 @@ public class Rental {
     private static int carAvailable ;
     private static Car[] carStorage ;
     private static int userMenuOption;
+    private static Car[] availableCars; // this is an array of all available cars
+    private static Car[] rentedCars;
+
+
 
     public static void main(String[] args) {
 
         carStorage = new Car[3];
 
-        System.out.println("Welcome to the car Rental CLI");
-        Car car1 = new Car("Honda", "Accord");
-        Car car2 = new Car("Chevy", "Cruze");
-        Car car3 = new Car("Toyota", "Corolla");
+        Car car1 = new Car("Honda", "Accord", null);
+        Car car2 = new Car("Chevy", "Cruze", null);
+        Car car3 = new Car("Toyota", "Corolla", "Mayra Mendoza");
+
 
         carStorage[0] = car1;
         carStorage[1] = car2;
         carStorage[2] = car3;
 
-        Car[] availableCars = getAvailableCars();
+
+        // this initializes array of available cars
+        availableCars = getAvailableCars();
+
+        // this initializes array of rented cars
+        rentedCars = getRentedCars();
+        availableCars[1].setRented(true);
+        availableCars[2].setRented(true);
+
+//        availableCars = getAvailableCars();
+
+
+
+//        carStorage[0].setRented(true);
+
+//        availableCars = getAvailableCars();
+        printAvailableCars();
+        printRentedCars();
+
+
+        printRentedCars();
+        printAvailableCars();
+
+        System.out.println(rentedCars[1].getCustomerName());
+
+
+
         // rented cards
-        Car[] rentedCars = getRentedCars();
+//        rentedCars = getRentedCars();
 
-        System.out.println(availableCars);
 
-        for( int i = 0; i< availableCars.length; i++){
-            System.out.println(carStorage[i].getMake() + carStorage[i].getModel());
-        }
+
+//        System.out.println(availableCars);
+
+//        for( int i = 0; i< availableCars.length; i++){
+//            System.out.println(availableCars[i].getMake() + " "+ availableCars[i].getModel());
+//        }
+
+//        printAvailableCars();
+
+//        System.out.println("Welcome to Java Car rentals");
+//        mainMenu();
+//        printRentedCars();
 
 
 
@@ -41,18 +79,44 @@ public class Rental {
 
 
     private static int mainMenu(){
-        System.out.println("Rental Menu \n1)Rent a car \n2)Return a car \n3)Exit program");
-        userMenuOption=UserInput.ReadInt("Please enter option", 1, 3);
+        System.out.println("Would you like to \n1)Rent a car \n2)Return a car ");
+        userMenuOption=UserInput.ReadInt("Select a number:" , 1, 2);
         System.out.println(userMenuOption);
+        if (userMenuOption == 1 ){
+            System.out.println("user selected to rent a car");
+
+
+        }else if (userMenuOption == 2){
+            System.out.println("user selected to return a car");
+        }
         return userMenuOption;
     }
 
     private static Car[] getAvailableCars(){
         return Arrays.stream(carStorage).filter(car -> !car.isRented()).toArray(Car[]::new);
+
+    }
+    private static void printAvailableCars(){
+        availableCars = getAvailableCars();
+        System.out.println("available");
+        for( int i = 0; i< availableCars.length; i++){
+            System.out.println( i + ") " +availableCars[i].getMake() + " "+ availableCars[i].getModel());
+        }
+
+
     }
     private static Car[] getRentedCars(){
         return Arrays.stream(carStorage).filter(car -> car.isRented()).toArray(Car[]::new);
     }
+
+    private static void printRentedCars(){
+        rentedCars = getRentedCars();
+        System.out.println("rented");
+        for( int i = 0; i< rentedCars.length; i++) {
+            System.out.println(i  + ") " + rentedCars[i].getMake() + " " + rentedCars[i].getModel());
+        }
+    }
+
 
     // this method will give the user an option of ending the program or staring all over (reset all cars to available)
     private static void endProgramOptions(){
