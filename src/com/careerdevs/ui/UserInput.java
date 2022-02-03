@@ -8,9 +8,26 @@ public class UserInput {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String readString(String question) {
-        System.out.println(question);
-        return scanner.nextLine();
+        while (true) {
+            System.out.print(question);
+
+            try {
+                String answer = scanner.nextLine();
+
+                while (answer.isBlank()) {
+                    System.out.println(question);
+                    answer = scanner.nextLine();
+                }
+                return answer;
+            }catch (InputMismatchException e) {
+                scanner.nextLine();
+                System.out.println("Entry invalid, please try again");
+
+            }
+        }
+
     }
+
 
     public static int ReadInt(String question, int min, int max) {
         while (true) {
@@ -33,4 +50,6 @@ public class UserInput {
 
         }
     }
+
+
 }

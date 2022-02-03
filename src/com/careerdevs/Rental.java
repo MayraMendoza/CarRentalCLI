@@ -43,7 +43,7 @@ public class Rental {
 
 //        carStorage[0].setRented(true);
 
-//        availableCars = getAvailableCars();
+        availableCars = getAvailableCars();
         printAvailableCars();
         printRentedCars();
 
@@ -52,6 +52,9 @@ public class Rental {
         printAvailableCars();
 
         System.out.println(rentedCars[1].getCustomerName());
+
+//        String UserName = UserInput.readString("Enter Name");
+//        System.out.println(UserName);
 
 
 

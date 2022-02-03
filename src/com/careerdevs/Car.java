@@ -18,8 +18,9 @@ public class Car {
         return customerName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public String setCustomerName(String customerName) {
+
+        return this.customerName = customerName;
     }
 
     public String getMake() {
