@@ -18,13 +18,11 @@ public class CarRentalTest1 {
     public static void main(String[] args) {
 
         carStorage = new Car[3];
-
         Car car1 = new Car("Honda", "Accord", null);
         Car car2 = new Car("Chevy", "Cruze", null);
         Car car3 = new Car("Toyota", "Corolla", null);
 
-        car3.setRented(false);
-
+//        car3.setRented(true);
 
         carStorage[0] = car1;
         carStorage[1] = car2;
@@ -37,29 +35,7 @@ public class CarRentalTest1 {
         // this initializes array of rented cars
         rentedCars = getRentedCars();
 
-
-
-//        printAvailableCars();
-//        printRentedCars();
         mainMenu();
-
-
-//        System.out.println("length of available cars");
-//        System.out.println(getAvailableCars().length);
-//
-//        int availableCarLength = getAvailableCars().length;
-//
-//        System.out.println("length of rented cars ");
-//        System.out.println(getRentedCars().length);
-//
-//
-//        int rentedCarLength = getRentedCars().length;
-//        if (rentedCarLength > 0){
-//            System.out.println("greater than zero");
-//        } else{
-//            System.out.println("no rented cars");
-//        }
-
 
 
     }
@@ -79,12 +55,13 @@ public class CarRentalTest1 {
         if(availableCarLength > 0 && rentedCarLength>0){
             System.out.println("Would you like to \n1)Rent a car \n2)Return a car ");
             userMenuOption=UserInput.ReadInt("Select a number:" , 1, 2);
+
+            // can do a switch here....  ?
             System.out.println(userMenuOption);
             if (userMenuOption == 1 ){
                 System.out.println("user selected to rent a car");
                 //printAvailableCars();
                 rentAcar();
-
 
             }else if (userMenuOption == 2){
                 System.out.println("user selected to return a car");
@@ -92,39 +69,47 @@ public class CarRentalTest1 {
                 returnACar();
             }
 
-
         } else if( availableCarLength <= 0 ) {
             System.out.println("would you like to \n1) Return a car ");
             userMenuOption = UserInput.ReadInt("select number", 1, 1);
             //printRentedCars();
             returnACar();
-//            printRentedCars();
-//            System.out.println(userMenuOption);
+
         } else if(rentedCarLength <= 0){
             System.out.println("would you like to \n1) Rent a car ");
             userMenuOption = UserInput.ReadInt("select number", 1, 1);
             //printAvailableCars();
             rentAcar();
-
-//            printAvailableCars();
-//            rentAcar();
-//            System.out.println(userMenuOption);
         }
-
         return userMenuOption;
     }
 
+    // will sort car storage array and place all available cars in a new array
     private static Car[] getAvailableCars(){
         return Arrays.stream(carStorage).filter(car -> !car.isRented()).toArray(Car[]::new);
-
     }
+
+    // this method will display all available cars
     private static void printAvailableCars(){
         availableCars = getAvailableCars();
         System.out.println("available");
         for( int i = 0; i< availableCars.length; i++){
             System.out.println( (i +1) + ") " +availableCars[i].getMake() + " "+ availableCars[i].getModel());
         }
+    }
 
+    // will sort car storage array and place all rented cars in a new array
+    private static Car[] getRentedCars(){
+        return Arrays.stream(carStorage).filter(car -> car.isRented()).toArray(Car[]::new);
+    }
+
+    // this method will display all rented cars
+    private static void printRentedCars(){
+        rentedCars = getRentedCars();
+        System.out.println("rented");
+        for( int i = 0; i< rentedCars.length; i++) {
+            System.out.println((i+1)  + ") " + rentedCars[i].getMake() + " " + rentedCars[i].getModel());
+        }
     }
 
     private static void rentAcar(){
@@ -145,20 +130,17 @@ public class CarRentalTest1 {
             // this will take user to main menu
             mainMenu();
 
-
         } else if (userSelection== "no"){
             System.out.println("user selected no");
             // if the user enters no it will call rent a car method that will print a list of available cars
             // and ask user to select from available cars.
             rentAcar();
         }
-
     }
 
-
-
-
     private static String yesOrNo() {
+        //
+
         String userConfirmation = UserInput.readString("Confirm (y/n)");
         String userAnswerValid = "No";
         String userConfirmation1 = "z";
@@ -174,22 +156,8 @@ public class CarRentalTest1 {
             } else {
                 System.out.println("please enter a valid entry");
                 userConfirmation = UserInput.readString("Confirm (y/n)");
-
             }
         } return userConfirmation1;
-    }
-
-    private static Car[] getRentedCars(){
-        return Arrays.stream(carStorage).filter(car -> car.isRented()).toArray(Car[]::new);
-    }
-
-    private static void printRentedCars(){
-        rentedCars = getRentedCars();
-        System.out.println("rented");
-        for( int i = 0; i< rentedCars.length; i++) {
-            System.out.println((i+1)  + ") " + rentedCars[i].getMake() + " " + rentedCars[i].getModel());
-        }
-
     }
 
     private static void returnACar(){
@@ -203,6 +171,7 @@ public class CarRentalTest1 {
             System.out.println("please enter the name you used to the " + rentedCars[selectedRent -1].getMake() + " "+ rentedCars[selectedRent -1].getModel());
             String userName = UserInput.readString("Enter Name: ");
             String userNameStored = rentedCars[selectedRent -1].getCustomerName();
+            // check if they are matching ----
             System.out.println(userName + userNameStored);
             System.out.println(userName.trim() + userNameStored.trim());
             if ( userName.trim().equalsIgnoreCase(userNameStored.trim())){
@@ -214,17 +183,13 @@ public class CarRentalTest1 {
                 System.out.println("Sorry The name you have enter does not match the name in our system.");
                 // this will take user to main menu
                 mainMenu();
-
             }
-
-
         } else if (userSelection== "no"){
             System.out.println("user selected no");
             // if the user enters no it will call rent a car method that will print a list of available cars
             // and ask user to select from available cars.
             mainMenu();
         }
-
 
     }
 
