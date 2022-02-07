@@ -2,6 +2,7 @@ package com.careerdevs.ui;
 
 
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UserInput {
@@ -50,6 +51,36 @@ public class UserInput {
 
         }
     }
+
+    public static boolean yesOrNo(String question){
+        while (true){
+            System.out.println("\n" + question + "\nYes Or No : ");
+            // next line will clear the empty space left on previous scanner readings.
+            scanner.nextLine();
+            String rawInputString = scanner.nextLine();
+
+            // incase user does not enter anything.
+            while (rawInputString.isBlank()) {
+                System.out.println("\n" + question + "\nYes Or No : ");
+                rawInputString = scanner.nextLine();
+            }
+
+
+            char cleanInput = rawInputString.toLowerCase(Locale.ROOT).trim().charAt(0);
+
+            if(cleanInput == 'y'){
+                return true;
+
+            }else if (cleanInput=='n'){
+                return false;
+            }
+
+
+        }
+
+    }
+
+
 
 
 }
