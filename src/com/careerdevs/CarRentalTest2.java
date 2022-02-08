@@ -50,7 +50,7 @@ public class CarRentalTest2 {
         // this condition will check the lengths of each array to determine what will be displayed to the user.
         // ****************** find way to make it "dry"****************** not a priority at the moment.
         if (availableCarLength > 0 && rentedCarLength > 0) {
-            System.out.println("Would you like to \n1)Rent a car \n2)Return a car \n Exit Program");
+            System.out.println("Would you like to \n1)Rent a car \n2)Return a car \n3) Exit Program");
             userMenuOption = UserInput.ReadInt("Select a option:", 1, 3);
 
             // can do a switch here....  ?
@@ -145,29 +145,6 @@ public class CarRentalTest2 {
         }
     }
 
-//    private static String yesOrNo() {
-//        //
-//
-//        String userConfirmation = UserInput.readString("Confirm (y/n)");
-//        String userAnswerValid = "No";
-//        String userConfirmation1 = "z";
-//
-//        while (userAnswerValid == "No") {
-//            if (userConfirmation.trim().equalsIgnoreCase("yes") || userConfirmation.trim().equalsIgnoreCase("y")) {
-//                userAnswerValid = "yes";
-//                userConfirmation1 = "yes";
-//
-//            } else if (userConfirmation.trim().equalsIgnoreCase("no") || userConfirmation.trim().equalsIgnoreCase("n")) {
-//                userAnswerValid = "yes";
-//                userConfirmation1 = "no";
-//            } else {
-//                System.out.println("please enter a valid entry");
-//                userConfirmation = UserInput.readString("Confirm (y/n)");
-//            }
-//        }
-//        return userConfirmation1;
-//    }
-
     private static void returnACar() {
         printRentedCars();
 
@@ -201,26 +178,17 @@ public class CarRentalTest2 {
 
     }
     private  static void endProgramOption(){
-        System.out.println("Thank you for stopping by");
+        boolean endProgram = UserInput.yesOrNo("You have selected the option to end this program please confirm");
+        if(endProgram){
+            System.out.println("Thank you for stopping by");
+
+        }else if(!endProgram){
+            mainMenu();
+        }
+
+
 
     }
 }
-
-
-// update this for exit option
-//
-
-// this method will give the user an option of ending the program or staring all over (reset all cars to available)
-//    private static void endProgramOptions(){
-//        System.out.println("Sorry all cars have been rented");
-//        int userInputEndProgram = UserInput.ReadInt("would you like to end this program or reset car data? (press 1 to end program or press 2 to reset data):", 1, 2);
-//        if (userInputEndProgram == 1) {
-//            System.out.println("Have a nice day!");
-//            return;
-//        }
-//        for (int i = 0; i <carStorage.length; i++) {
-//            carStorage[i].setRented(false);
-//        }
-//    }
 
 

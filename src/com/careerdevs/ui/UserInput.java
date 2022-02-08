@@ -59,15 +59,12 @@ public class UserInput {
             scanner.nextLine();
             String rawInputString = scanner.nextLine();
 
-            // incase user does not enter anything.
+            // in case user does not enter anything.
             while (rawInputString.isBlank()) {
                 System.out.println("\n" + question + "\nYes Or No : ");
                 rawInputString = scanner.nextLine();
             }
-
-
             char cleanInput = rawInputString.toLowerCase(Locale.ROOT).trim().charAt(0);
-
             if(cleanInput == 'y'){
                 return true;
 
