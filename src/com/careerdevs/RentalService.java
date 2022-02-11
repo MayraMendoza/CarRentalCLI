@@ -29,6 +29,7 @@ public class RentalService {
         Car[] rentedCars = getRentedCars();
 
 
+
         // mainMenu(); method will ask user if they want to rent a car, return a car or exit the program.
         mainMenu();
 

@@ -4,59 +4,83 @@ public class Car {
 
     private String make;
     private String model;
-    private boolean rented ;
-    private boolean available;
+    private boolean isRented ;
+    private int costPerDay;
+    private int daysRented;
     private String customerName;
 
     public Car (String make, String model, String customerName){
         this.make = make;
         this.model = model;
         this.customerName = customerName;
+
     }
+    public Car(String make, String model, String customerName, int costPerDay, int daysRented){
+        this.make = make;
+        this.model = model;
+        this.customerName = customerName;
+        this.costPerDay = costPerDay;
+        this.daysRented = daysRented;
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public String setCustomerName(String customerName) {
-
-        return this.customerName = customerName;
     }
 
     public String getMake() {
         return make;
     }
 
+    public void setMake(String make) {
+        this.make = make;
+    }
+
     public String getModel() {
         return model;
     }
 
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public boolean isRented() {
-        return rented;
+        return isRented;
     }
 
     public void setRented(boolean rented) {
-        this.rented = rented;
+        isRented = rented;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public int getCostPerDay() {
+        return costPerDay;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setCostPerDay(int costPerDay) {
+        this.costPerDay = costPerDay;
     }
 
-    // constructor
+    public int getDaysRented() {
+        return daysRented;
+    }
 
+    public void setDaysRented(int daysRented) {
+        this.daysRented = daysRented;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
     @Override
     public String toString() {
-        return "com.careerdevs.Car{" +
+        return "Car{" +
                 "make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", rented=" + rented +
-                ", available=" + available +
+                ", isRented=" + isRented +
+                ", costPerDay=" + costPerDay +
+                ", daysRented=" + daysRented +
+                ", customerName='" + customerName + '\'' +
                 '}';
     }
 }
