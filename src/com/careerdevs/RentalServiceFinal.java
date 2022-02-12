@@ -56,8 +56,8 @@ public class RentalServiceFinal {
         // this condition will check the lengths of each array to determine what will be displayed to the user.
         // ****************** find way to make it "dry"****************** not a priority at the moment.
         if (availableCarLength > 0 && rentedCarLength > 0) {
-            System.out.println("Would you like to \n1)Rent a car \n2)Return a car \n3) Exit Program");
-            userMenuOption = UserInput.ReadInt("Select a option:", 1, 3);
+            System.out.println("Would you like to \n1)Rent a car \n2)Return a car \n3) Create newCar \n4) Exit Program");
+            userMenuOption = UserInput.ReadInt("Select a option:", 1, 4);
 
             // can do a switch here....  ?
             System.out.println(userMenuOption);
@@ -71,25 +71,31 @@ public class RentalServiceFinal {
                 //printRentedCars();
                 returnACar();
             } else if( userMenuOption == 3){
+                //create new method for makinf new car
+                createNewCar();
+            }
+            else if( userMenuOption == 4){
                 endProgramOption();
             }
 
         } else if (availableCarLength <= 0) {
-            System.out.println("would you like to \n1) Return a car \n2) Exit program ");
-            userMenuOption = UserInput.ReadInt("select an option", 1, 2);
+            System.out.println("would you like to \n1) Return a car \n2) create new car \n3) Exit program ");
+            userMenuOption = UserInput.ReadInt("select an option", 1, 3);
             //printRentedCars();
             switch (userMenuOption){
                 case 1 -> returnACar();
-                case 2 ->endProgramOption();
+                case 2 -> createNewCar();
+                case 3 -> endProgramOption();
             }
 
         } else if (rentedCarLength <= 0) {
-            System.out.println("would you like to \n1) Rent a car  \n2) Exit Program");
-            userMenuOption = UserInput.ReadInt("select an option", 1, 2);
+            System.out.println("would you like to \n1) Rent a car  \n2) create new car \n3) Exit Program");
+            userMenuOption = UserInput.ReadInt("select an option", 1, 3);
             //printAvailableCars();
             switch (userMenuOption){
                 case 1 -> rentAcar();
-                case 2 ->endProgramOption();
+                case 2 -> createNewCar();
+                case 3 ->endProgramOption();
             }
 
         }
@@ -194,6 +200,34 @@ public class RentalServiceFinal {
         }
 
 
+
+    }
+
+    private static void createNewCar(){
+        // to create new car we will ask for make and model
+        //carStorage.add(new Car("Chevy", "Cruze", null));
+        String newCarMake = UserInput.readString("Please enter vehicle Make: ");
+        String newCarModel = UserInput.readString("Please enter vehicle model: ");
+        System.out.println("Are you sure you want to add this vehicle? "+ newCarMake +" "+newCarModel);
+        boolean userConfirmation = UserInput.yesOrNo("Please confirm");
+        System.out.println("6");
+        System.out.println(userConfirmation);
+        if (userConfirmation){
+            System.out.println("7");
+            carStorage.add(new Car(newCarMake, newCarModel,null));
+            //update available cars
+            availableCars = getAvailableCars();
+            mainMenu();
+
+        }else if(!userConfirmation){
+            mainMenu();
+
+        }
+        // this initializes array of available cars
+
+
+        // this initializes array of rented cars
+        rentedCars = getRentedCars();
 
     }
 }
