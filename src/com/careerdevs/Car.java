@@ -9,10 +9,10 @@ public class Car {
     private int daysRented;
     private String customerName;
 
-    public Car (String make, String model, String customerName){
+    public Car (String make, String model){
         this.make = make;
         this.model = model;
-        this.customerName = customerName;
+//        this.customerName = null;
 
     }
     public Car(String make, String model, String customerName, int costPerDay, int daysRented){

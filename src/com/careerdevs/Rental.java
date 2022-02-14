@@ -19,9 +19,9 @@ public class Rental {
 
         carStorage = new Car[3];
 
-        Car car1 = new Car("Honda", "Accord", null);
-        Car car2 = new Car("Chevy", "Cruze", null);
-        Car car3 = new Car("Toyota", "Corolla", "Mayra Mendoza");
+        Car car1 = new Car("Honda", "Accord");
+        Car car2 = new Car("Chevy", "Cruze");
+        Car car3 = new Car("Toyota", "Corolla");
 
 
         carStorage[0] = car1;
