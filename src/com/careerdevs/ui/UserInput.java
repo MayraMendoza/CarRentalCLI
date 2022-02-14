@@ -58,7 +58,7 @@ public class UserInput {
 
     public static boolean yesOrNo(String question){
         while (true){
-            System.out.println("\n" + question + "\nYes or No : ");
+            System.out.print( question + " Yes or No : ");
             try{
 
                 String rawInputString = scanner.nextLine();
