@@ -57,9 +57,11 @@ public class RentalServiceFinal {
         // variable will hold rented car array length
         int rentedCarLength = getRentedCars().size();
 
+        System.out.println("\n**** Main Menu ****");
+
         // this condition will check the lengths of each array to determine what options will be displayed to the user.
         if (availableCarLength > 0 && rentedCarLength > 0) {
-            System.out.println("Would you like to \n1) Rent a car \n2) Return a car \n3) Create newCar \n4) Exit Program");
+            System.out.println("1) Rent a car \n2) Return a car \n3) Create newCar \n4) Exit Program");
             userMenuOption = UserInput.ReadInt("Select a option:", 1, 4);
 
             switch (userMenuOption){
@@ -70,7 +72,7 @@ public class RentalServiceFinal {
             }
 
         } else if (availableCarLength <= 0) {
-            System.out.println("would you like to \n1) Return a car \n2) create new car \n3) Exit program ");
+            System.out.println("1) Return a car \n2) create new car \n3) Exit program ");
             userMenuOption = UserInput.ReadInt("select an option", 1, 3);
             //printRentedCars();
             switch (userMenuOption){
@@ -80,7 +82,7 @@ public class RentalServiceFinal {
             }
 
         } else if (rentedCarLength <= 0) {
-            System.out.println("would you like to \n1) Rent a car  \n2) create new car \n3) Exit Program");
+            System.out.println("1) Rent a car  \n2) create new car \n3) Exit Program");
             userMenuOption = UserInput.ReadInt("select an option", 1, 3);
             //printAvailableCars();
             switch (userMenuOption){
@@ -105,7 +107,7 @@ public class RentalServiceFinal {
     // this method will display all available cars
     private static void printAvailableCars() {
         availableCars = getAvailableCars();
-        System.out.println("available");
+        System.out.println("\nAvailable Cars");
         for (int i = 0; i < availableCars.size(); i++) {
             System.out.println((i + 1) + ") " + availableCars.get(i).getMake() + " " + availableCars.get(i).getModel());
         }
@@ -114,7 +116,7 @@ public class RentalServiceFinal {
     // this method will display all rented cars
     private static void printRentedCars() {
         rentedCars = getRentedCars();
-        System.out.println("rented");
+        System.out.println("\nRented Cars");
         for (int i = 0; i < rentedCars.size(); i++) {
             System.out.println((i + 1) + ") " + rentedCars.get(i).getMake() + " " + rentedCars.get(i).getModel());
         }
@@ -125,10 +127,10 @@ public class RentalServiceFinal {
     in the appropriate car object. If the user does not confirm it will redirect them to main menu.
      */
     private static void rentAcar() {
-        System.out.println("printed twice");
+
         printAvailableCars();
         int selectedRent = UserInput.ReadInt("Enter a number to select an available car you'd like to rent", 1, availableCars.size());
-        System.out.println("are you sure you would like to rent the " + availableCars.get(selectedRent - 1).getMake() + " " + availableCars.get(selectedRent - 1).getModel() + "?");
+        System.out.println("\nare you sure you would like to rent the " + availableCars.get(selectedRent - 1).getMake() + " " + availableCars.get(selectedRent - 1).getModel() + "?");
         boolean userSelection = UserInput.yesOrNo("Please confirm");
 
         if (userSelection) {
@@ -137,7 +139,7 @@ public class RentalServiceFinal {
             availableCars.get(selectedRent - 1).setCustomerName(userName);
             availableCars.get(selectedRent - 1).setRented(true);
 
-            System.out.println("thank you for renting the " + availableCars.get(selectedRent - 1).getMake() + " " + availableCars.get(selectedRent - 1).getModel());
+            System.out.println("\nThank you for renting the " + availableCars.get(selectedRent - 1).getMake() + " " + availableCars.get(selectedRent - 1).getModel());
 
             // this will take user to main menu
             mainMenu();
@@ -159,7 +161,7 @@ public class RentalServiceFinal {
         printRentedCars();
 
         int selectedRent = UserInput.ReadInt("Enter a number to select the car you'd like to return", 1, rentedCars.size());
-        System.out.println("are you sure you would like to return the " + rentedCars.get(selectedRent - 1).getMake() + " " + rentedCars.get(selectedRent - 1).getModel() + "?");
+        System.out.println("\nare you sure you would like to return the " + rentedCars.get(selectedRent - 1).getMake() + " " + rentedCars.get(selectedRent - 1).getModel() + "?");
         boolean userSelection = UserInput.yesOrNo("Please confirm ");
         if (userSelection) {
             System.out.println("yes was selected");
@@ -193,9 +195,8 @@ public class RentalServiceFinal {
         //carStorage.add(new Car("Chevy", "Cruze", null));
         String newCarMake = UserInput.readString("Please enter vehicle Make: ");
         String newCarModel = UserInput.readString("Please enter vehicle model: ");
-        System.out.println("Are you sure you want to add this vehicle? "+ newCarMake +" "+newCarModel);
+        System.out.println("\nAre you sure you want to add this vehicle "+ newCarMake +" "+newCarModel+ "?");
         boolean userConfirmation = UserInput.yesOrNo("Please confirm");
-        System.out.println(userConfirmation);
         if (userConfirmation){
             // add new car to carStorage arraylist
             carStorage.add(new Car(newCarMake, newCarModel));
@@ -216,7 +217,7 @@ public class RentalServiceFinal {
     private  static void endProgramOption(){
         boolean endProgram = UserInput.yesOrNo("You have selected the option to end this program please confirm");
         if(endProgram){
-            System.out.println("Thank you for stopping by");
+            System.out.println("\n**************** Thank you for stopping by *****************");
 
         }else if(!endProgram){
             mainMenu();
