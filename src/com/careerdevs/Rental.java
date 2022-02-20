@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Rental {
-    private static int carAvailable ;
     private static Car[] carStorage ;
     private static int userMenuOption;
     private static Car[] availableCars; // this is an array of all available cars
